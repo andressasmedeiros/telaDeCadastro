@@ -57,6 +57,7 @@ function cadastro(event) {
         const imagem = document.getElementById('visualizacao-url');
         imagem.src = '';
         imagem.classList.remove('imagem-neon');
+
         document.getElementById('form-post').reset()
     }
 
@@ -66,27 +67,27 @@ document
     .getElementById('form-post')
     .addEventListener('submit', cadastro)
 
-    function adicionarImagem() {
-        const url = document.getElementById('foto').value;
-        const imagem = document.getElementById('visualizacao-url');
-    
-        if (url) {
-            imagem.src = url;
-    
+function adicionarImagem() {
+    const url = document.getElementById('foto').value;
+    const imagem = document.getElementById('visualizacao-url');
+
+    if (url) {
+        imagem.src = url;
+
+        imagem.classList.remove('imagem-neon');
+
+        imagem.onload = function () {
+            imagem.classList.add('imagem-neon');
+        };
+
+        imagem.onerror = function () {
             imagem.classList.remove('imagem-neon');
-    
-            imagem.onload = function () {
-                imagem.classList.add('imagem-neon');
-            };
-    
-            imagem.onerror = function () {
-                imagem.classList.remove('imagem-neon');
-                imagem.src = '';
-            };
-        } else {
             imagem.src = '';
-            imagem.classList.remove('imagem-neon');
-        }
+        };
+    } else {
+        imagem.src = '';
+        imagem.classList.remove('imagem-neon');
     }
+}
 
 document.getElementById('foto').addEventListener('input', adicionarImagem);
