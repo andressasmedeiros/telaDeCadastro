@@ -50,10 +50,6 @@ function cadastro(event) {
 
 }
 
-document
-    .getElementById('form-post')
-    .addEventListener('submit', cadastro)
-
 function adicionarImagem() {
     var url = document.getElementById('foto').value;
     var imagem = document.getElementById('visualizacao-url');
@@ -78,3 +74,7 @@ function adicionarImagem() {
 }
 
 document.getElementById('foto').addEventListener('input', adicionarImagem);
+
+document
+    .getElementById('form-post')
+    .addEventListener('submit', cadastro)
